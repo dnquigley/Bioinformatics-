@@ -1,3 +1,5 @@
+#Devin Quigley
+
 #library packages
 library(Biostrings)
 library(msa)
