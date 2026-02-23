@@ -213,10 +213,10 @@ writeXStringSet(protein_set, filepath = "HS6_protein.fasta")
 #This is according to a search on the NIH website:
 #(https://www.nih.gov/news-events/nih-research-matters/fixing-sickle-cell-disease-gene)
 
-#The most well-known disease-causing mutation in HBB (the sickle cell mutation) is at codon 6 (Glu → Val), which is not covered in my partial fragment.
+#9a. The most well-known disease-causing mutation in HBB (the sickle cell mutation) is at codon 6 (Glu → Val), which is not covered in my partial fragment.
 #Reference for above claim: (https://www.nhlbi.nih.gov/research/sickle-cell-disease)
 
-#Based on the partial sequence data we have, we cannot determine whether Homo_sapiens_6
+#9a. Based on the partial sequence data we have, we cannot determine whether Homo_sapiens_6
 # carries the specific mutation(s) that cause disease. Therefore, there is not enough evidence
 # to conclude that this individual actually has sickle cell disease.
 
