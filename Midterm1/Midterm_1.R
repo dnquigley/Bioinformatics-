@@ -58,6 +58,7 @@ print(consString)
 #GGTGAGTCTATGGGACGCTTGATGTTTTCTTTCCCCTTCTTTTCTATGGTTAAATTC
 #ATGTCATAGGAAGGGG"
 
+#3 ANSWER: Gene: hbb gene for beta globin, Accession number:LC121775.1
 
 
 #4. finding GC content
