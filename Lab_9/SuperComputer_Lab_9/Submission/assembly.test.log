@@ -1,0 +1,45 @@
+/var/spool/slurmd/job01470/slurm_script: line 27: 
+# worked
+java -jar /export/share/software/biological/picard/picard.jar \
+	CreateSequenceDictionary \
+    REFERENCE=genome/Thermus_thermophilus_TTHNAR1.fa \
+    OUTPUT=genome/Thermus_thermophilus_TTHNAR1.dict
+
+# worked
+/export/share/software/biological/bowtie2-2.4.2-sra-linux-x86_64/bowtie2-build \
+	genome/Thermus_thermophilus_TTHNAR1.fa \
+	genome/Thermus_thermophilus_TTHNAR1
+
+: No such file or directory
+250803 reads; of these:
+  250803 (100.00%) were paired; of these:
+    74085 (29.54%) aligned concordantly 0 times
+    173371 (69.13%) aligned concordantly exactly 1 time
+    3347 (1.33%) aligned concordantly >1 times
+    ----
+    74085 pairs aligned concordantly 0 times; of these:
+      610 (0.82%) aligned discordantly 1 time
+    ----
+    73475 pairs aligned 0 times concordantly or discordantly; of these:
+      146950 mates make up the pairs; of these:
+        144020 (98.01%) aligned 0 times
+        2598 (1.77%) aligned exactly 1 time
+        332 (0.23%) aligned >1 times
+71.29% overall alignment rate
+/var/spool/slurmd/job01470/slurm_script: line 57: 
+# piped version
+/export/share/software/biological/bowtie2-2.4.2-sra-linux-x86_64/bowtie2 -x \
+		genome/Thermus_thermophilus_TTHNAR1 \
+        -1 fastq/${SRR}_pass_1.fastq.gz \
+        -2 fastq/${SRR}_pass_2.fastq.gz --sensitive-local \
+        --rg-id ${SRR} --rg SM:${SRR} --rg PL:ILLUMINA \
+	   | samtools view -hb - | samtools sort -l 5 -o alignment/${SRR}.bam
+
+/export/share/software/biological/gatk-4.6.2.0/gatk \
+   --java-options "-Xmx8g" HaplotypeCaller  \
+   --reference genome/Thermus_thermophilus_TTHNAR1.fa \
+   --sample-ploidy 1 \
+   --input alignment/${SRR}.bam \
+   --output variants/${SRR}.vcf
+
+: No such file or directory
