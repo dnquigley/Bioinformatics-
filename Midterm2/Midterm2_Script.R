@@ -19,7 +19,7 @@ names(seqs)
 #Extract the Homo sapiens from sequence list
 hs_seq <- seqs[grep("Homo_sapiens", names(seqs))]
 
-#Remove gaps and ambiguus bases for translation due to error
+#Remove gaps and ambiguous bases for translation due to error
 hs_seq_clean <- DNAString(gsub("[-N]", "", as.character(hs_seq)))
 
 #Translation of cleaned sequence for homo_sapiens
@@ -65,25 +65,7 @@ selected_go <- rbind(mf, bp, cc)
 #View results
 selected_go
 
-#Graph selected GO results: Barplot
-barplot(rep(1, 3),
-        names.arg = selected_go$namespace_1003,
-        main = "GO terms for P54098",
-        ylab = "Presence")
-
-text(x = c(0.7, 1.9, 3.1), y = 0.5,
-     labels = selected_go$name_1006,
-     srt = 45, adj = 1, xpd = TRUE)
-
-
-
-
-
-
-#test
-
-library(ggplot2)
-
+#Graph selected GO results: Barplot (AI)
 go_data <- data.frame(
   ONTOLOGY = c("MF", "BP", "CC"),
   Term = c("DNA binding",
@@ -99,6 +81,8 @@ ggplot(go_data, aes(x = Term, y = Count, fill = ONTOLOGY)) +
   labs(title = "GO Terms for P54098", x = NULL, y = "Count") +
   theme_minimal() +
   theme(legend.position = "bottom")
+
+
 
 
 
