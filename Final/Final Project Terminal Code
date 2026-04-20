@@ -1,0 +1,29 @@
+#!/bin/bash
+
+src=$HOME/Desktop/tea_2brad
+
+gunzip ~/Desktop/tea_2brad/SRR7231584.fastq.gz
+gunzip ~/Desktop/tea_2brad/SRR7231585.fastq.gz
+gunzip ~/Desktop/tea_2brad/SRR7231586.fastq.gz
+gunzip ~/Desktop/tea_2brad/SRR7231587.fastq.gz
+
+ustacks -f ~/Desktop/SRR7231582.fastq -o ~/Desktop -i 1 -m 3 -M 2
+ustacks -f ~/Desktop/SRR7231583.fastq -o ~/Desktop -i 2 -m 3 -M 2
+ustacks -f SRR7231584.fastq -o . -i 3 --name SRR7231584 -m 2 -M 3 -p 4
+ustacks -f SRR7231585.fastq -o . -i 4 --name SRR7231585 -m 2 -M 3 -p 4
+ustacks -f SRR7231586.fastq -o . -i 5 --name SRR7231586 -m 2 -M 3 -p 4
+ustacks -f SRR7231587.fastq -o . -i 6 --name SRR7231587 -m 2 -M 3 -p 4
+
+nano ~/Desktop/popmap.txt
+SRR7231582      pop1
+SRR7231583      pop1
+SRR7231584      pop1
+SRR7231585      pop2
+SRR7231586      pop2
+SRR7231587      pop2
+cstacks -P . -M popmap.txt -n 2
+sstacks -P . -M popmap.txt
+tsv2bam -P . -M popmap.txt
+gstacks -P . -M popmap.txt --kmer-length 15 -t 2
+populations -P . -M popmap.txt -p 1 -r 0.8 --vcf --structure --genepop -t 2
+
